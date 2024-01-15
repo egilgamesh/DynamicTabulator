@@ -38,25 +38,65 @@ The Dynamic Table JavaScript class is a simple utility for rendering dynamic tab
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dynamic Table Example</title>
-    <!-- Import the DynamicTable class -->
-    <script type="module" src="path/to/DynamicTable.js"></script>
+    <script src="./DynamicTable.js"></script>
+    <title>Dynamic Table</title>
+    <style>
+        .group-header {
+            font-weight: bold;
+            cursor: pointer;
+            background-color: azure;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .dynamic-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        .dynamic-table th, .dynamic-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+    </style>
 </head>
 <body>
-    <div id="tableContainer"></div>
 
-    <script>
-        // Usage example
-        const tableOptions = {
-            data: /* your data array */,
-            groupby: /* your groupby field */,
-            columns: /* your columns array */,
+<div id="tablediv"></div>
+
+<script>
+
+
+    // Example usage
+    const tableData = [
+        {id: 1, name: 'Row 1', group: 'Group A'},
+        {id: 2, name: 'Row 2', group: 'Group A'},
+        {id: 3, name: 'Row 3', group: 'Group B'},
+        {id: 4, name: 'Row 4', group: 'Group B'},
+        {id: 5, name: 'Row 3', group: 'Group C'},
+        {id: 6, name: 'Row 4', group: 'Group C'},
+        {id: 7, name: 'Row 3', group: 'Group D'},
+        {id: 8, name: 'Row 4', group: 'Group D'},
+    ];
+
+   const tableOptions = {
+            data:tableData,
+            groupby:'group',
+            columns: [
+           {title: 'ID', field: 'id'},
+           {title: 'Name', field: 'name'}
+        ],
         };
 
-        const dynamicTable = new DynamicTable('tableContainer', tableOptions);
-    </script>
+        const dynamicTable = new DynamicTable('tablediv', tableOptions);
+</script>
+
 </body>
-</html>
+</html>```
 
 
 
