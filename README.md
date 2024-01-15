@@ -96,7 +96,7 @@ The Dynamic Table JavaScript class is a simple utility for rendering dynamic tab
 </script>
 
 </body>
-</html>```
+</html>'''
 
 
 
