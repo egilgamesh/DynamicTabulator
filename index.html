@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./DynamicTable.js"></script>
+    <title>Dynamic Table</title>
+    <style>
+        .group-header {
+            font-weight: bold;
+            cursor: pointer;
+            background-color: azure;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .dynamic-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        .dynamic-table th, .dynamic-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+
+<div id="tablediv"></div>
+
+<script>
+
+
+    // Example usage
+    const tableData = [
+        {id: 1, name: 'Row 1', group: 'Group A'},
+        {id: 2, name: 'Row 2', group: 'Group A'},
+        {id: 3, name: 'Row 3', group: 'Group B'},
+        {id: 4, name: 'Row 4', group: 'Group B'},
+        {id: 5, name: 'Row 3', group: 'Group C'},
+        {id: 6, name: 'Row 4', group: 'Group C'},
+        {id: 7, name: 'Row 3', group: 'Group D'},
+        {id: 8, name: 'Row 4', group: 'Group D'},
+    ];
+
+   const tableOptions = {
+            data:tableData,
+            groupby:'group',
+            columns: [
+           {title: 'ID', field: 'id'},
+           {title: 'Name', field: 'name'}
+        ],
+        };
+
+        const dynamicTable = new DynamicTable('tablediv', tableOptions);
+</script>
+
+</body>
+</html>
