@@ -1,15 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        integrity="sha384-HJ3+N5vFfR9eJtDR8CGPX2tcPm8YpHaoeDQYnuu77S01G1LspkqYYD2aWlpc+1xj" crossorigin="anonymous">
+
     <script src="./DynamicTable.js"></script>
     <title>Dynamic Table</title>
     <style>
         .group-header {
             font-weight: bold;
             cursor: pointer;
-            background-color: rgb(13, 248, 122);
+            background-color: rgb(72, 72, 72);
+            color: #EEEEEE;
         }
 
         .hidden {
@@ -20,46 +25,54 @@
             width: 100%;
             border-collapse: collapse;
             margin-top: 10px;
+            border: 1px solid #EEEEEE;
         }
 
-        .dynamic-table th, .dynamic-table td {
-            border: 1px solid #8d0606;
+        .dynamic-table th,
+        .dynamic-table td {
+            border: 1px solid #e2e2e2;
             padding: 8px;
             text-align: left;
         }
+
+        .dynamic-table:nth-of-type(odd) {
+            background: #b5b5b5;
+        }
     </style>
 </head>
+
 <body>
 
-<div id="tablediv"></div>
+    <div id="tablediv"></div>
 
-<script>
+    <script>
 
 
-    // Example usage
-    const tableData = [
-        {id: 1, name: 'Row 1', group: 'Group A'},
-        {id: 2, name: 'Row 2', group: 'Group A'},
-        {id: 3, name: 'Row 3', group: 'Group B'},
-        {id: 4, name: 'Row 4', group: 'Group B'},
-        {id: 5, name: 'Row 3', group: 'Group C'},
-        {id: 6, name: 'Row 4', group: 'Group C'},
-        {id: 7, name: 'Row 3', group: 'Group D'},
-        {id: 8, name: 'Row 4', group: 'Group D'},
-    ];
+        // Example usage
+        const tableData = [
+            { id: 1, name: 'Row 1', group: '2017' },
+            { id: 2, name: 'Row 2', group: '2017' },
+            { id: 3, name: 'Row 3', group: '2018' },
+            { id: 4, name: 'Row 4', group: '2018' },
+            { id: 5, name: 'Row 3', group: '2019' },
+            { id: 6, name: 'Row 4', group: '2019' },
+            { id: 7, name: 'Row 3', group: '2020' },
+            { id: 8, name: 'Row 4', group: '2020' },
+        ];
 
-   const tableOptions = {
-            data:tableData,
-            groupby:'group',
+        const tableOptions = {
+            data: tableData,
+            groupby: 'group',
             columns: [
-           {title: 'ID', field: 'id'},
-           {title: 'Name', field: 'name'}
-        ],
+                { title: 'ID', field: 'id' },
+                { title: 'Name', field: 'name' }
+            ],
         };
 
         const dynamicTable = new DynamicTable('tablediv', tableOptions);
-        dynamicTable.SetFooter(5);
-</script>
+        dynamicTable.SetFooter('5 days');
+    </script>
 
 </body>
+
 </html>

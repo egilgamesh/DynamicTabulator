@@ -6,7 +6,9 @@ class DynamicTable {
         this.data = options.data || [];
         this.groupby = options.groupby || '';
         this.columns = options.columns || [];
-
+        this.collapseIconClass = 'fa-chevron-up';
+        this.expandIconClass = 'fa-chevron-down';
+        
         this.renderTable();
     }
 
