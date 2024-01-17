@@ -77,6 +77,19 @@ class DynamicTable {
             }
         });
     }
+    SetFooter(value) {
+        const tfoot = document.createElement('tfoot');
+        const footerRow = document.createElement('tr');
+        footerRow.classList.add('footer-row');
+
+        const td = document.createElement('td');
+        td.colSpan = this.columns.length;
+        td.innerHTML = `<strong>Total Leaves:</strong> ${value}`;
+        footerRow.appendChild(td);
+
+        tfoot.appendChild(footerRow);
+        this.container.querySelector('table').appendChild(tfoot);
+    }
 }
 
 // Export the DynamicTable class for importing in other files
