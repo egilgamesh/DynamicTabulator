@@ -106,5 +106,6 @@ The Dynamic Table JavaScript class is a simple utility for rendering dynamic tab
 - data: An array of objects representing the table data.
 - groupby: The field to group rows by.
 - columns: An array of column configurations.
+- Set Table footer with specific value
 
 Happy coding!
