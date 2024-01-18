@@ -14,7 +14,6 @@ class DynamicTable {
     renderTable() {
         const table = document.createElement('table');
         table.classList.add('dynamic-table');
-
         this.container.appendChild(table);
         this.renderHeader(table);
         this.renderRows(table);
@@ -26,7 +25,7 @@ class DynamicTable {
 
         this.columns.forEach(column => {
             const th = document.createElement('th');
-            th.textContent = column.displayName || column.field;
+            th.textContent = column.title || column.field;
             headerRow.appendChild(th);
         });
 
@@ -71,7 +70,7 @@ class DynamicTable {
         const row = document.createElement('tr');
         if(this.groupby)
         {
-            row.classList.add(`group-data-${group.replaceAll(' ', '-')}`, 'hidden');
+        row.classList.add(`group-data-${group.toString().replaceAll(' ', '-')}`, 'hidden');
         }
 
         this.columns.forEach(column => {
@@ -84,7 +83,7 @@ class DynamicTable {
     }
 
     toggleGroup(group) {
-        const groupDataRows = document.querySelectorAll(`.group-data-${group.replaceAll(' ', '-')}`);
+        const groupDataRows = document.querySelectorAll(`.group-data-${group.toString().replaceAll(' ', '-')}`);
         
         groupDataRows.forEach(dataRow => {
             dataRow.classList.toggle('hidden');

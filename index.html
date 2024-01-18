@@ -48,22 +48,25 @@
 
         // Example usage
         const tableData = [
-            { id: 1, name: 'Row 1', group: '2017' },
-            { id: 2, name: 'Row 2', group: '2017' },
-            { id: 3, name: 'Row 3', group: '2018' },
-            { id: 4, name: 'Row 4', group: '2018' },
-            { id: 5, name: 'Row 3', group: '2019' },
-            { id: 6, name: 'Row 4', group: '2019' },
-            { id: 7, name: 'Row 3', group: '2020' },
-            { id: 8, name: 'Row 4', group: '2020' },
+            { year: '2005', month: '11', Type: 'Startwert', Days:9 },
+            { year: '2005', month: '12', Type: 'Startwert', Days:-8 },
+            { year: '2006', month: '1', Type: 'Startwert', Days:30 },
+            { year: '2006', month: '2', Type: 'Startwert', Days:-1 },
+            { year: '2006', month: '3', Type: 'Startwert', Days:-5 },
+            { year: '2006', month: '5', Type: 'Startwert', Days:-15 },
+            { year: '2006', month: '7', Type: 'Startwert', Days:-8 },
+            { year: '2006', month: '11', Type: 'Startwert', Days:-1 },
+            { year: '2007', month: '1', Type: 'Zugang', Days:30 },
         ];
 
         const tableOptions = {
             data: tableData,
-            groupby: 'group',
+            groupby: 'year',
             columns: [
-                { title: 'ID', field: 'id' },
-                { title: 'Name', field: 'name' }
+                { title: 'Year', field: 'year' },
+                { title: 'Month', field: 'month' },
+                { title: 'Type', field: 'Type' },
+                { title: 'Days', field: 'Days' }
             ],
         };
 
