@@ -6,8 +6,7 @@ class DynamicTable {
         this.data = options.data || [];
         this.groupby = options.groupby || '';
         this.columns = options.columns || [];
-        this.collapseIconClass = 'fa-chevron-up';
-        this.expandIconClass = 'fa-chevron-down';
+
         
         this.renderTable();
     }
@@ -17,24 +16,45 @@ class DynamicTable {
         table.classList.add('dynamic-table');
 
         this.container.appendChild(table);
-
+        this.renderHeader(table);
         this.renderRows(table);
+    }
+
+    renderHeader(table) {
+        const thead = document.createElement('thead');
+        const headerRow = document.createElement('tr');
+
+        this.columns.forEach(column => {
+            const th = document.createElement('th');
+            th.textContent = column.displayName || column.field;
+            headerRow.appendChild(th);
+        });
+
+        thead.appendChild(headerRow);
+        table.appendChild(thead);
     }
 
     renderRows(table) {
         const tbody = document.createElement('tbody');
-
-        let currentGroup = null;
-
-        this.data.forEach(rowData => {
-            if (this.groupby && rowData[this.groupby] !== currentGroup) {
-                currentGroup = rowData[this.groupby];
-                this.renderGroupHeader(tbody, currentGroup);
-            }
-
-            this.renderRow(tbody, rowData, currentGroup);
-        });
-
+    
+        if (this.groupby) {
+            let currentGroup = null;
+    
+            this.data.forEach(rowData => {
+                if (rowData[this.groupby] !== currentGroup) {
+                    currentGroup = rowData[this.groupby];
+                    this.renderGroupHeader(tbody, currentGroup);
+                }
+    
+                this.renderRow(tbody, rowData, currentGroup);
+            });
+        } else {
+            // If no grouping is specified, render all rows without group headers
+            this.data.forEach(rowData => {
+                this.renderRow(tbody, rowData);
+            });
+        }
+    
         table.appendChild(tbody);
     }
 
@@ -49,7 +69,10 @@ class DynamicTable {
 
     renderRow(tbody, rowData, group) {
         const row = document.createElement('tr');
-        row.classList.add(`group-data-${group.replaceAll(' ', '-')}`, 'hidden');
+        if(this.groupby)
+        {
+            row.classList.add(`group-data-${group.replaceAll(' ', '-')}`, 'hidden');
+        }
 
         this.columns.forEach(column => {
             const td = document.createElement('td');
@@ -79,6 +102,7 @@ class DynamicTable {
             }
         });
     }
+
     SetFooter(value) {
         const tfoot = document.createElement('tfoot');
         const footerRow = document.createElement('tr');
