@@ -6,8 +6,6 @@ class DynamicTable {
         this.data = options.data || [];
         this.groupby = options.groupby || '';
         this.columns = options.columns || [];
-
-        
         this.renderTable();
     }
 
