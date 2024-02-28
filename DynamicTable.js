@@ -33,16 +33,16 @@ class DynamicTable {
 
     renderRows(table) {
         const tbody = document.createElement('tbody');
-    
+
         if (this.groupby) {
             let currentGroup = null;
-    
+
             this.data.forEach(rowData => {
                 if (rowData[this.groupby] !== currentGroup) {
                     currentGroup = rowData[this.groupby];
                     this.renderGroupHeader(tbody, currentGroup);
                 }
-    
+
                 this.renderRow(tbody, rowData, currentGroup);
             });
         } else {
@@ -51,14 +51,14 @@ class DynamicTable {
                 this.renderRow(tbody, rowData);
             });
         }
-    
+
         table.appendChild(tbody);
     }
 
     renderGroupHeader(tbody, group) {
         const groupHeaderRow = document.createElement('tr');
         groupHeaderRow.classList.add('group-header');
-        groupHeaderRow.innerHTML = `<td colspan="${this.columns.length}">${group}</td>`;
+        groupHeaderRow.innerHTML = `<td id="id-${group}" colspan="${this.columns.length}">${group}</td>`;
         groupHeaderRow.addEventListener('click', () => this.toggleGroup(group));
 
         tbody.appendChild(groupHeaderRow);
@@ -82,7 +82,7 @@ class DynamicTable {
 
     toggleGroup(group) {
         const groupDataRows = document.querySelectorAll(`.group-data-${group.toString().replaceAll(' ', '-')}`);
-        
+
         groupDataRows.forEach(dataRow => {
             dataRow.classList.toggle('hidden');
         });
@@ -99,6 +99,24 @@ class DynamicTable {
             }
         });
     }
+
+    setGroupHeader(headerFunction) {
+        const tbody = this.container.querySelector('tbody');
+        const groupHeader = tbody.querySelectorAll('tr.group-header');
+        const groups = [...new Set(this.data.map(item => item[this.groupby]))];
+
+        groupHeader.forEach((groupHeaderRow, index) => {
+            groupHeaderRow.innerHTML = headerFunction(groups[index]);
+            groupHeaderRow.setAttribute('colspan', this.columns.length);
+            groupHeaderRow.classList.add('group-header');
+            groupHeaderRow.addEventListener('click', () => this.toggleGroup(group));
+            console.log(groupHeaderRow.innerHTML);
+
+        })
+
+           console.log(groupHeader);
+    }
+
 
     SetFooter(value) {
         const tfoot = document.createElement('tfoot');
