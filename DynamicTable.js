@@ -82,22 +82,23 @@ class DynamicTable {
 
     toggleGroup(group) {
         const groupDataRows = document.querySelectorAll(`.group-data-${group.toString().replaceAll(' ', '-')}`);
-
+        console.log(groupDataRows);
         groupDataRows.forEach(dataRow => {
             dataRow.classList.toggle('hidden');
         });
 
         // Collapse other groups
         const otherGroupRows = document.querySelectorAll('.group-header:not(.hidden)');
-        otherGroupRows.forEach(row => {
-            if (row.textContent !== group) {
-                const otherGroup = row.textContent;
-                const otherGroupDataRows = document.querySelectorAll(`.group-data-${otherGroup.replaceAll(' ', '-')}`);
-                otherGroupDataRows.forEach(dataRow => {
-                    dataRow.classList.add('hidden');
-                });
-            }
-        });
+        console.log(otherGroupRows);
+        // otherGroupRows.forEach(row => {
+        //     if (row.textContent !== group) {
+        //         const otherGroup = row.textContent;
+        //         const otherGroupDataRows =  document.querySelectorAll(`.group-data-${otherGroup.toString().replaceAll(' ', '-')}`);
+        //         otherGroupDataRows.forEach(dataRow => {
+        //             dataRow.classList.add('hidden');
+        //         });
+        //     }
+        // });
     }
 
     setGroupHeader(headerFunction) {
@@ -109,7 +110,7 @@ class DynamicTable {
             groupHeaderRow.innerHTML = headerFunction(groups[index]);
             groupHeaderRow.setAttribute('colspan', this.columns.length);
             groupHeaderRow.classList.add('group-header');
-            groupHeaderRow.addEventListener('click', () => this.toggleGroup(group));
+            groupHeaderRow.addEventListener('click', () => this.toggleGroup(groupHeaderRow));
             console.log(groupHeaderRow.innerHTML);
 
         })
