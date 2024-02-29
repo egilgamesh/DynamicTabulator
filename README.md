@@ -40,29 +40,7 @@ The Dynamic Table JavaScript class is a simple utility for rendering dynamic tab
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="./DynamicTable.js"></script>
     <title>Dynamic Table</title>
-    <style>
-        .group-header {
-            font-weight: bold;
-            cursor: pointer;
-            background-color: azure;
-        }
 
-        .hidden {
-            display: none;
-        }
-
-        .dynamic-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 10px;
-        }
-
-        .dynamic-table th, .dynamic-table td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: left;
-        }
-    </style>
 </head>
 <body>
 
