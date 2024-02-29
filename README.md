@@ -1,6 +1,6 @@
 # Dynamic Table JavaScript Class
 
-The Dynamic Table JavaScript class is a simple utility for rendering dynamic tables with grouping functionality. It allows you to create tables with grouped headers and toggle visibility of grouped rows.
+The Dynamic Table JavaScript class is a simple utility for rendering dynamic tables with grouping functionality. It allows you to create tables with grouped headers and toggle the visibility of grouped rows.
 
 ## Features
 
@@ -110,6 +110,9 @@ The Dynamic Table JavaScript class is a simple utility for rendering dynamic tab
 - Set Group header with dynamic content, with lambda function  support
 - device Dark mode support
 
+
+## Example of how to use SetGroupHeader feature
+
 ```javascript
         dynamicTable.setGroupHeader(function (year) {
             let carryovers = carryoverdata();
@@ -122,4 +125,5 @@ The Dynamic Table JavaScript class is a simple utility for rendering dynamic tab
         });
 ```
 
+And we can do same with the Setfooter feature
 Happy coding!
