@@ -53,15 +53,15 @@
 
         // Example usage
         const tableData = [
-            { year: '2005', month: '11', Type: 'Startwert', Days: 9 },
-            { year: '2005', month: '12', Type: 'Startwert', Days: -8 },
-            { year: '2006', month: '1', Type: 'Startwert', Days: 30 },
-            { year: '2006', month: '2', Type: 'Startwert', Days: -1 },
-            { year: '2006', month: '3', Type: 'Startwert', Days: -5 },
-            { year: '2006', month: '5', Type: 'Startwert', Days: -15 },
-            { year: '2006', month: '7', Type: 'Startwert', Days: -8 },
-            { year: '2006', month: '11', Type: 'Startwert', Days: -1 },
-            { year: '2007', month: '1', Type: 'Zugang', Days: 30 },
+            { year: '2005', month: '11', type: 'Startwert', day: 9 },
+            { year: '2005', month: '12', type: 'Startwert', day: -8 },
+            { year: '2006', month: '1', type: 'Startwert', day: 30 },
+            { year: '2006', month: '2', type: 'Startwert', day: -1 },
+            { year: '2006', month: '3', type: 'Startwert', day: -5 },
+            { year: '2006', month: '5', type: 'Startwert', day: -15 },
+            { year: '2006', month: '7', type: 'Startwert', day: -8 },
+            { year: '2006', month: '11', type: 'Startwert', day: -1 },
+            { year: '2007', month: '1', type: 'Zugang', day: 30 },
         ];
 
         const tableOptions = {
@@ -70,23 +70,115 @@
             columns: [
                 { title: 'Year', field: 'year' },
                 { title: 'Month', field: 'month' },
-                { title: 'Type', field: 'Type' },
-                { title: 'Days', field: 'Days' }
+                { title: 'Type', field: 'type' },
+                { title: 'Days', field: 'day' }
             ],
         };
 
         const dynamicTable = new DynamicTable('tablediv', tableOptions);
+<<<<<<< HEAD
 
+=======
+>>>>>>> 04e82b6df559f11874ac4a483fc3c26ba78727e6
         dynamicTable.setGroupHeader(function (year) {
             let carryovers = carryoverdata();
             let previousYear = year - 1;
             let carryover = carryovers[previousYear] ? carryovers[previousYear].carryover : 0;
             let visibilitySpan = '<td id="carryover-span-' + year + '" class="visible-when-expanded" >'
                  +year + ' Carryover from Previous Years: ' + carryover + ' days  </td>';
+<<<<<<< HEAD
             let fullHeader = visibilitySpan;
+=======
+
+            // Create the default group header content
+            //let headerContent = '<span>' + year + '</span>';
+
+            //let fullHeader = headerContent + visibilitySpan
+            let fullHeader = visibilitySpan
+
+            // Customize the group header here
+           // return `${year} Carryover from Previous Years: ${carryover}`;
+>>>>>>> 04e82b6df559f11874ac4a483fc3c26ba78727e6
            return fullHeader;
         });
         dynamicTable.SetFooter('5 days');
+
+        function carryoverdata() {
+            const data = {
+                "2005": {
+                    "totalDaysTaken": -8,
+                    "totalDaysProvided": 9,
+                    "carryover": 1
+                },
+                "2006": {
+                    "totalDaysTaken": -30,
+                    "totalDaysProvided": 31,
+                    "carryover": 1
+                },
+                "2007": {
+                    "totalDaysTaken": -26,
+                    "totalDaysProvided": 31,
+                    "carryover": 5
+                },
+                "2008": {
+                    "totalDaysTaken": -25,
+                    "totalDaysProvided": 35,
+                    "carryover": 10
+                },
+                "2009": {
+                    "totalDaysTaken": -30,
+                    "totalDaysProvided": 40,
+                    "carryover": 10
+                },
+                "2010": {
+                    "totalDaysTaken": -33,
+                    "totalDaysProvided": 40,
+                    "carryover": 7
+                },
+                "2011": {
+                    "totalDaysTaken": -30,
+                    "totalDaysProvided": 37,
+                    "carryover": 7
+                },
+                "2012": {
+                    "totalDaysTaken": -28,
+                    "totalDaysProvided": 37,
+                    "carryover": 9
+                },
+                "2013": {
+                    "totalDaysTaken": -34,
+                    "totalDaysProvided": 39,
+                    "carryover": 5
+                },
+                "2014": {
+                    "totalDaysTaken": -34,
+                    "totalDaysProvided": 35,
+                    "carryover": 1
+                },
+                "2015": {
+                    "totalDaysTaken": -26,
+                    "totalDaysProvided": 31,
+                    "carryover": 5
+                },
+                "2016": {
+                    "totalDaysTaken": -29,
+                    "totalDaysProvided": 35,
+                    "carryover": 6
+                },
+                "2017": {
+                    "totalDaysTaken": -35,
+                    "totalDaysProvided": 36,
+                    "carryover": 1
+                },
+                "2018": {
+                    "totalDaysTaken": -14,
+                    "totalDaysProvided": 14,
+                    "carryover": 0
+                }
+            }
+            return data;
+        }
+
     </script>
 
 </body>

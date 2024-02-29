@@ -106,6 +106,19 @@ The Dynamic Table JavaScript class is a simple utility for rendering dynamic tab
 - data: An array of objects representing the table data.
 - groupby: The field to group rows by.
 - columns: An array of column configurations.
-- Set Table footer with specific value
+- Set Table footer with a specific value
+- Set Group header with dynamic content, with lambda function  support
+
+```javascript
+        dynamicTable.setGroupHeader(function (year) {
+            let carryovers = carryoverdata();
+            let previousYear = year - 1;
+            let carryover = carryovers[previousYear] ? carryovers[previousYear].carryover : 0;
+            let visibilitySpan = '<td id="carryover-span-' + year + '" class="visible-when-expanded" >'
+                 +year + ' Carryover from Previous Years: ' + carryover + ' days  </td>';
+            let fullHeader = visibilitySpan;
+           return fullHeader;
+        });
+```
 
 Happy coding!
