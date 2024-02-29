@@ -118,6 +118,6 @@ The Dynamic Table JavaScript class is a simple utility for rendering dynamic tab
                  +year + ' Carryover from Previous Years: ' + carryover + ' days  </td>';
             let fullHeader = visibilitySpan;
            return fullHeader;
-        }); ```
+        }); javascript```
 
 Happy coding!
