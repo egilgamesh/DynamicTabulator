@@ -104,4 +104,5 @@ The Dynamic Table JavaScript class is a simple utility for rendering dynamic tab
 ```
 
 And we can do same with the Setfooter feature
+
 Happy coding!
