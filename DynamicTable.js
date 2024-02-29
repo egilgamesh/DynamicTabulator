@@ -106,12 +106,9 @@ class DynamicTable {
 
         groupHeader.forEach((groupHeaderRow, index) => {
             groupHeaderRow.innerHTML = headerFunction(groups[index]);
-            groupHeaderRow.setAttribute('colspan', this.columns.length);
             groupHeaderRow.classList.add('group-header');
             groupHeaderRow.classList.add(groups[index]);
         })
-
-    
     }
 
 

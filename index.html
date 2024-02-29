@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="DynamicTableStyle.css">
     <script src="./DynamicTable.js"></script>
     <title>Dynamic Table</title>
-
 </head>
 
 <body>
@@ -15,8 +14,6 @@
     <div id="tablediv"></div>
 
     <script>
-
-
         // Example usage
         const tableData = [
             { year: '2005', month: '11', type: 'Startwert', day: 9 },
@@ -46,7 +43,7 @@
             let carryovers = carryoverdata();
             let previousYear = year - 1;
             let carryover = carryovers[previousYear] ? carryovers[previousYear].carryover : 0;
-            let visibilitySpan = '<td id="carryover-span-' + year + '" class="visible-when-expanded" >'
+            let visibilitySpan = '<td id="carryover-span-' + year + '" class="visible-when-expanded" colspan='+tableOptions.columns.length+'>'
                  +year + ' Carryover from Previous Years: ' + carryover + ' days  </td>';
             let fullHeader = visibilitySpan
            return fullHeader;
