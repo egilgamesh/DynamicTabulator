@@ -48,7 +48,10 @@
             let fullHeader = visibilitySpan
            return fullHeader;
         });
-        dynamicTable.SetFooter('5 days');
+        dynamicTable.SetFooter(function()
+        {
+            return  `<strong>Total Leaves:</strong> ${1}`;
+        });
 
         function carryoverdata() {
             const data = {

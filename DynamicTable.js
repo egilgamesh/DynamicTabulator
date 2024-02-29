@@ -112,14 +112,14 @@ class DynamicTable {
     }
 
 
-    SetFooter(value) {
+    SetFooter(footerFunction) {
         const tfoot = document.createElement('tfoot');
         const footerRow = document.createElement('tr');
         footerRow.classList.add('footer-row');
 
         const td = document.createElement('td');
         td.colSpan = this.columns.length;
-        td.innerHTML = `<strong>Total Leaves:</strong> ${value}`;
+        td.innerHTML = footerFunction();//
         footerRow.appendChild(td);
 
         tfoot.appendChild(footerRow);
