@@ -108,6 +108,7 @@ The Dynamic Table JavaScript class is a simple utility for rendering dynamic tab
 - columns: An array of column configurations.
 - Set Table footer with a specific value
 - Set Group header with dynamic content, with lambda function  support
+- device Dark mode support
 
 ```javascript
         dynamicTable.setGroupHeader(function (year) {
