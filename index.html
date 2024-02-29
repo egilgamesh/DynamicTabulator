@@ -32,11 +32,6 @@
             padding: 8px;
             text-align: left;
         }
-
-        /* .dynamic-table:nth-of-type(odd) {
-            background: #b5b5b5;
-        } */
-
         .footer-row {
             background: #b0b0b0;
             color: #424242;
@@ -76,29 +71,13 @@
         };
 
         const dynamicTable = new DynamicTable('tablediv', tableOptions);
-<<<<<<< HEAD
-
-=======
->>>>>>> 04e82b6df559f11874ac4a483fc3c26ba78727e6
         dynamicTable.setGroupHeader(function (year) {
             let carryovers = carryoverdata();
             let previousYear = year - 1;
             let carryover = carryovers[previousYear] ? carryovers[previousYear].carryover : 0;
             let visibilitySpan = '<td id="carryover-span-' + year + '" class="visible-when-expanded" >'
                  +year + ' Carryover from Previous Years: ' + carryover + ' days  </td>';
-<<<<<<< HEAD
-            let fullHeader = visibilitySpan;
-=======
-
-            // Create the default group header content
-            //let headerContent = '<span>' + year + '</span>';
-
-            //let fullHeader = headerContent + visibilitySpan
             let fullHeader = visibilitySpan
-
-            // Customize the group header here
-           // return `${year} Carryover from Previous Years: ${carryover}`;
->>>>>>> 04e82b6df559f11874ac4a483fc3c26ba78727e6
            return fullHeader;
         });
         dynamicTable.SetFooter('5 days');
