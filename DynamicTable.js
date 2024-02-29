@@ -18,6 +18,19 @@ class DynamicTable {
         this.renderRows(table);
     }
 
+    rebuildTable(data) {
+        // Update container and data properties
+        this.container.innerHTML = "";
+        this.data = data;
+
+        // Create a new table and render it
+        const table = document.createElement('table');
+        table.classList.add('dynamic-table');
+        this.container.appendChild(table);
+        this.renderHeader(table);
+        this.renderRows(table);
+    }
+
     renderHeader(table) {
         const thead = document.createElement('thead');
         const headerRow = document.createElement('tr');
