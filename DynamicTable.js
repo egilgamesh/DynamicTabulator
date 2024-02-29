@@ -33,16 +33,16 @@ class DynamicTable {
 
     renderRows(table) {
         const tbody = document.createElement('tbody');
-    
+
         if (this.groupby) {
             let currentGroup = null;
-    
+
             this.data.forEach(rowData => {
                 if (rowData[this.groupby] !== currentGroup) {
                     currentGroup = rowData[this.groupby];
                     this.renderGroupHeader(tbody, currentGroup);
                 }
-    
+
                 this.renderRow(tbody, rowData, currentGroup);
             });
         } else {
@@ -51,14 +51,14 @@ class DynamicTable {
                 this.renderRow(tbody, rowData);
             });
         }
-    
+
         table.appendChild(tbody);
     }
 
     renderGroupHeader(tbody, group) {
         const groupHeaderRow = document.createElement('tr');
         groupHeaderRow.classList.add('group-header');
-        groupHeaderRow.innerHTML = `<td colspan="${this.columns.length}">${group}</td>`;
+        groupHeaderRow.innerHTML = `<td id="id-${group}" colspan="${this.columns.length}">${group}</td>`;
         groupHeaderRow.addEventListener('click', () => this.toggleGroup(group));
 
         tbody.appendChild(groupHeaderRow);
@@ -81,24 +81,24 @@ class DynamicTable {
     }
 
     toggleGroup(group) {
-        const groupDataRows = document.querySelectorAll(`.group-data-${group.toString().replaceAll(' ', '-')}`);
-        
+        const groupDataRows = document.querySelectorAll(`[class^=group-data-${group.toString().replaceAll(' ', '-')}]`);
         groupDataRows.forEach(dataRow => {
             dataRow.classList.toggle('hidden');
         });
 
-        // Collapse other groups
-        const otherGroupRows = document.querySelectorAll('.group-header:not(.hidden)');
-        otherGroupRows.forEach(row => {
-            if (row.textContent !== group) {
-                const otherGroup = row.textContent;
-                const otherGroupDataRows = document.querySelectorAll(`.group-data-${otherGroup.replaceAll(' ', '-')}`);
-                otherGroupDataRows.forEach(dataRow => {
-                    dataRow.classList.add('hidden');
-                });
-            }
+        const othergroups = [...new Set(this.data.map(item => item[this.groupby]))].filter(item => item != group);
+        let othergroupheaderElements =[];
+        othergroups.forEach((group, index) =>{
+            othergroupheaderElements[index] = document.querySelectorAll(`[class^=group-data-${group.toString().replaceAll(' ', '-')}]`);
+        });
+        othergroupheaderElements.forEach(groupElement =>{
+            groupElement.forEach(element => {
+                element.classList.add('hidden');
+
+            })
         });
     }
+
     setGroupHeader(headerFunction) {
         const tbody = this.container.querySelector('tbody');
         const groupHeader = tbody.querySelectorAll('tr.group-header');
@@ -109,8 +109,11 @@ class DynamicTable {
             groupHeaderRow.setAttribute('colspan', this.columns.length);
             groupHeaderRow.classList.add('group-header');
             groupHeaderRow.classList.add(groups[index]);
-        });
+        })
+
+    
     }
+
 
     SetFooter(value) {
         const tfoot = document.createElement('tfoot');
