@@ -81,24 +81,22 @@ class DynamicTable {
     }
 
     toggleGroup(group) {
-        const groupDataRows = document.querySelectorAll(`.group-data-${group.toString().replaceAll(' ', '-')}`);
-        console.log(groupDataRows);
+        const groupDataRows = document.querySelectorAll(`[class^=group-data-${group.toString().replaceAll(' ', '-')}]`);
         groupDataRows.forEach(dataRow => {
             dataRow.classList.toggle('hidden');
         });
 
-        // Collapse other groups
-        const otherGroupRows = document.querySelectorAll('.group-header:not(.hidden)');
-        console.log(otherGroupRows);
-        // otherGroupRows.forEach(row => {
-        //     if (row.textContent !== group) {
-        //         const otherGroup = row.textContent;
-        //         const otherGroupDataRows =  document.querySelectorAll(`.group-data-${otherGroup.toString().replaceAll(' ', '-')}`);
-        //         otherGroupDataRows.forEach(dataRow => {
-        //             dataRow.classList.add('hidden');
-        //         });
-        //     }
-        // });
+        const othergroups = [...new Set(this.data.map(item => item[this.groupby]))].filter(item => item != group);
+        let othergroupheaderElements =[];
+        othergroups.forEach((group, index) =>{
+            othergroupheaderElements[index] = document.querySelectorAll(`[class^=group-data-${group.toString().replaceAll(' ', '-')}]`);
+        });
+        othergroupheaderElements.forEach(groupElement =>{
+            groupElement.forEach(element => {
+                element.classList.add('hidden');
+
+            })
+        });
     }
 
     setGroupHeader(headerFunction) {
@@ -110,12 +108,10 @@ class DynamicTable {
             groupHeaderRow.innerHTML = headerFunction(groups[index]);
             groupHeaderRow.setAttribute('colspan', this.columns.length);
             groupHeaderRow.classList.add('group-header');
-            groupHeaderRow.addEventListener('click', () => this.toggleGroup(groupHeaderRow));
-            console.log(groupHeaderRow.innerHTML);
-
+            groupHeaderRow.classList.add(groups[index]);
         })
 
-           console.log(groupHeader);
+    
     }
 
 
