@@ -48,9 +48,10 @@
             let fullHeader = visibilitySpan
            return fullHeader;
         });
+
         dynamicTable.SetFooter(function()
         {
-            return  `<strong>Total Leaves:</strong> ${1}`;
+            return `<strong>Total Leaves:</strong> ${(z) => z}`;
         });
 
         function carryoverdata() {
