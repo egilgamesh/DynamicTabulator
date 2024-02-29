@@ -7,6 +7,7 @@ class DynamicTable {
         this.groupby = options.groupby || '';
         this.columns = options.columns || [];
         this.renderTable();
+        this.applyInlineStyles();
     }
 
     renderTable() {
@@ -125,6 +126,72 @@ class DynamicTable {
         tfoot.appendChild(footerRow);
         this.container.querySelector('table').appendChild(tfoot);
     }
+
+    applyInlineStyles() {
+        var styles = `
+            .group-header {
+                font-weight: bold;
+                cursor: pointer;
+                background-color: #f5f5f5;
+                color: #414040;
+            }
+    
+            .hidden {
+                display: none;
+            }
+    
+            .dynamic-table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-top: 10px;
+                border: 1px solid #414040;
+            }
+    
+            .dynamic-table th,
+            .dynamic-table td {
+                border: 1px solid #aba9a9;
+                padding: 8px;
+                text-align: left;
+            }
+    
+            .footer-row {
+                background: #b0b0b0;
+                color: #424242;
+            }
+    
+            @media (prefers-color-scheme: dark) {
+                .group-header {
+                    font-weight: bold;
+                    cursor: pointer;
+                    background-color: #424242;
+                    color: #ffffff;
+                }
+    
+                .dynamic-table th,
+                .dynamic-table tbody {
+                    border: 1px solid #5a5a5a;
+                    padding: 8px;
+                    text-align: left;
+                    background-color: #686868;
+                    color: #ffffff;
+                }
+            }
+    
+            @media (prefers-color-scheme: light) {
+                .group-header {
+                    font-weight: bold;
+                    cursor: pointer;
+                    background-color: #f5f5f5;
+                    color: #414040;
+                }
+            }
+        `;
+    
+        var styleElement = document.createElement('style');
+        styleElement.type = 'text/css';
+        styleElement.appendChild(document.createTextNode(styles));
+        document.head.appendChild(styleElement);
+    }   
 }
 
 // Export the DynamicTable class for importing in other files
