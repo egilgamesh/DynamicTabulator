@@ -99,6 +99,18 @@ class DynamicTable {
             }
         });
     }
+    setGroupHeader(headerFunction) {
+        const tbody = this.container.querySelector('tbody');
+        const groupHeader = tbody.querySelectorAll('tr.group-header');
+        const groups = [...new Set(this.data.map(item => item[this.groupby]))];
+
+        groupHeader.forEach((groupHeaderRow, index) => {
+            groupHeaderRow.innerHTML = headerFunction(groups[index]);
+            groupHeaderRow.setAttribute('colspan', this.columns.length);
+            groupHeaderRow.classList.add('group-header');
+            groupHeaderRow.classList.add(groups[index]);
+        });
+    }
 
     SetFooter(value) {
         const tfoot = document.createElement('tfoot');

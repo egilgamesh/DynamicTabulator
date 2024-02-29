@@ -76,6 +76,16 @@
         };
 
         const dynamicTable = new DynamicTable('tablediv', tableOptions);
+
+        dynamicTable.setGroupHeader(function (year) {
+            let carryovers = carryoverdata();
+            let previousYear = year - 1;
+            let carryover = carryovers[previousYear] ? carryovers[previousYear].carryover : 0;
+            let visibilitySpan = '<td id="carryover-span-' + year + '" class="visible-when-expanded" >'
+                 +year + ' Carryover from Previous Years: ' + carryover + ' days  </td>';
+            let fullHeader = visibilitySpan;
+           return fullHeader;
+        });
         dynamicTable.SetFooter('5 days');
     </script>
 
